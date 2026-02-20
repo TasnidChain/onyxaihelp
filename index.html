@@ -214,6 +214,7 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
   border-radius: var(--radius-sm); font-size: 16px; font-weight: 600;
   text-decoration: none; transition: all 0.25s; border: none; cursor: pointer;
   font-family: 'Space Grotesk', sans-serif;
+  display: inline-block;
 }
 .btn-primary:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 8px 30px #3b82f640; }
 .btn-ghost {
@@ -221,27 +222,9 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
   border-radius: var(--radius-sm); font-size: 16px; font-weight: 500;
   text-decoration: none; border: 1px solid var(--border); transition: all 0.25s;
   cursor: pointer; font-family: 'Space Grotesk', sans-serif;
+  display: inline-block;
 }
 .btn-ghost:hover { border-color: var(--text-muted); color: var(--text); }
-
-/* STATS ROW */
-.stats-row {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: var(--radius);
-  overflow: hidden; margin: 80px 0;
-}
-.stat {
-  background: var(--surface); padding: 32px; text-align: center;
-}
-.stat-value {
-  font-size: 42px; font-weight: 700; letter-spacing: -1px;
-  font-family: 'JetBrains Mono', monospace;
-}
-.stat-value.red { color: var(--red); }
-.stat-value.amber { color: var(--amber); }
-.stat-value.green { color: var(--green); }
-.stat-label { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
 
 /* SECTIONS */
 .section { padding: 80px 0; }
@@ -260,105 +243,314 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
   margin-bottom: 48px; line-height: 1.6;
 }
 
-/* PROBLEM CARDS */
-.problem-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: var(--radius);
-  overflow: hidden;
+/* WHAT ARE AI VOICE AGENTS */
+.agent-explainer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  margin-bottom: 80px;
 }
-.problem-card { background: var(--surface); padding: 36px; }
-.problem-icon {
-  width: 48px; height: 48px; border-radius: var(--radius-sm);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; margin-bottom: 20px;
+.agent-visual {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.problem-icon.red { background: var(--red-dim); color: var(--red); }
-.problem-icon.amber { background: var(--amber-dim); color: var(--amber); }
-.problem-icon.green { background: var(--green-dim); color: var(--green); }
-.problem-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
-.problem-card p { font-size: 15px; color: var(--text-dim); line-height: 1.6; }
-.problem-stat {
-  display: inline-block; margin-top: 16px; padding: 4px 12px;
-  background: var(--bg); border-radius: 100px;
-  font-size: 13px; font-family: 'JetBrains Mono', monospace;
+.agent-step {
+  text-align: center;
+  position: relative;
 }
-.problem-stat.red { color: var(--red); border: 1px solid var(--red-dim); }
-.problem-stat.amber { color: var(--amber); border: 1px solid var(--amber-dim); }
+.agent-step-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+.agent-step-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform: translateY(-50%);
+}
+.agent-step:last-child .agent-step-icon::after {
+  display: none;
+}
+.agent-step-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.agent-step-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+}
 
-/* SOLUTION SECTION */
-.solution-grid {
-  display: flex; flex-direction: column; gap: 16px;
+/* COMPARISON TABLE */
+.comparison-section {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  padding: 48px;
+  margin-bottom: 80px;
 }
-.solution-card {
-  display: grid; grid-template-columns: auto 1fr auto;
-  align-items: center; gap: 24px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 28px 32px;
-  transition: all 0.3s;
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
 }
-.solution-card:hover {
+.comparison-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+}
+.comparison-card.ai {
+  background: #000000;
   border-color: var(--accent);
   box-shadow: 0 0 40px var(--accent-glow);
-  transform: translateX(4px);
 }
-.solution-num {
-  font-size: 48px; font-weight: 700; color: var(--surface2);
-  font-family: 'JetBrains Mono', monospace;
-  line-height: 1;
-  -webkit-text-stroke: 1px var(--text-muted);
+.comparison-card.traditional {
+  opacity: 0.7;
 }
-.solution-card:hover .solution-num { -webkit-text-stroke-color: var(--accent); color: var(--accent-glow); }
-.solution-info h3 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
-.solution-info p { font-size: 14px; color: var(--text-dim); }
-.solution-tag {
-  padding: 6px 14px; border-radius: 100px;
-  font-size: 12px; font-weight: 600;
-  font-family: 'JetBrains Mono', monospace;
-  white-space: nowrap;
+.comparison-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.solution-tag.blue { background: #3b82f618; color: var(--accent2); border: 1px solid #3b82f630; }
-.solution-tag.green { background: var(--green-dim); color: var(--green); border: 1px solid #10b98130; }
-.solution-tag.amber { background: var(--amber-dim); color: var(--amber); border: 1px solid #f59e0b30; }
+.comparison-title-badge {
+  font-size: 20px;
+}
+.comparison-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.comparison-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.comparison-item-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 18px;
+}
+.comparison-item-icon.check {
+  color: var(--green);
+}
+.comparison-item-icon.x {
+  color: var(--red);
+}
+.comparison-card.ai .comparison-item {
+  color: var(--text);
+}
+.comparison-card.traditional .comparison-item {
+  color: var(--text-dim);
+}
+
+/* BENEFITS GRID */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.benefit-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: all 0.3s;
+}
+.benefit-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px var(--accent-glow);
+}
+.benefit-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  display: block;
+}
+.benefit-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.benefit-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
 
 /* HOW IT WORKS */
 .steps-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 .step-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 36px 28px;
-  position: relative; overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
   transition: all 0.3s;
 }
 .step-card:hover { border-color: var(--accent); }
 .step-num {
-  font-size: 72px; font-weight: 700; color: #ffffff05;
-  position: absolute; top: -8px; right: 12px; line-height: 1;
+  font-size: 72px;
+  font-weight: 700;
+  color: #ffffff05;
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  line-height: 1;
   font-family: 'JetBrains Mono', monospace;
 }
 .step-card:hover .step-num { color: #3b82f610; }
 .step-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 2px;
-  color: var(--accent); margin-bottom: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 16px;
   font-family: 'JetBrains Mono', monospace;
 }
-.step-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
-.step-card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+.step-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.step-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
 
-/* SOCIAL PROOF */
-.proof-bar {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: var(--radius);
-  overflow: hidden; margin: 48px 0;
+/* SERVICE CARDS */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
-.proof-item { background: var(--surface); padding: 28px; text-align: center; }
-.proof-item .num {
-  font-size: 28px; font-weight: 700; color: var(--accent);
+.service-card {
+  background: var(--surface);
+  background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 1px);
+  background-size: 16px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--surface);
+  opacity: 0.85;
+  z-index: 0;
+}
+.service-content {
+  position: relative;
+  z-index: 1;
+}
+.service-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 40px var(--accent-glow);
+}
+.service-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent2);
+  background: var(--accent-glow);
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 20px;
   font-family: 'JetBrains Mono', monospace;
 }
-.proof-item .label { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.service-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+.service-desc {
+  font-size: 15px;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.service-list {
+  list-style: none;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.service-list li {
+  font-size: 14px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+.service-list li::before {
+  content: '→';
+  color: var(--accent);
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.service-cta {
+  background: var(--bg);
+  color: var(--text);
+  padding: 14px 28px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  display: inline-block;
+  transition: all 0.25s;
+}
+.service-cta:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
 
 /* TESTIMONIALS */
 .testimonials-grid {
@@ -419,59 +611,95 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* CONTACT FORM */
-.contact-form-section {
-  padding: 80px 0;
-}
-.contact-form-wrapper {
-  background: var(--surface);
+/* FAQ */
+.faq-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 48px 40px;
-  max-width: 700px;
-  margin: 0 auto;
+  overflow: hidden;
 }
-.contact-form { display: flex; flex-direction: column; gap: 20px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.form-group { display: flex; flex-direction: column; gap: 6px; }
-.form-group label {
-  font-size: 13px;
+.faq-item {
+  background: var(--surface);
+  padding: 28px 32px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.faq-item:hover { background: var(--surface2); }
+.faq-q {
+  font-size: 17px;
   font-weight: 600;
-  color: var(--text-dim);
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-q::after {
+  content: '+';
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.3s;
   font-family: 'JetBrains Mono', monospace;
 }
-.form-group input,
-.form-group textarea {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
+.faq-item.open .faq-q::after {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+.faq-a {
   font-size: 15px;
-  color: var(--text);
-  font-family: 'Space Grotesk', sans-serif;
-  transition: border-color 0.2s;
-  outline: none;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+  opacity: 0;
+  margin-top: 0;
 }
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--accent);
+.faq-item.open .faq-a {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 12px;
 }
-.form-group textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--text-muted);
-}
-.form-submit {
-  margin-top: 8px;
-}
-.form-submit .btn-primary {
-  width: 100%;
+
+/* CTA SECTION */
+.cta-section {
+  padding: 100px 0;
   text-align: center;
-  font-size: 17px;
-  padding: 16px 32px;
+}
+.cta-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 64px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.cta-box h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.cta-box p {
+  font-size: 18px;
+  color: var(--text-dim);
+  max-width: 580px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
 }
 
 /* CALENDLY PLACEHOLDER */
@@ -481,7 +709,7 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
   border-radius: var(--radius);
   padding: 60px 24px;
   text-align: center;
-  margin-top: 32px;
+  margin-top: 48px;
 }
 .calendly-placeholder p {
   font-size: 16px;
@@ -499,78 +727,48 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* CTA SECTION */
-.cta-section {
-  padding: 100px 0;
-  text-align: center;
-}
-.cta-box {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 64px 48px;
-  position: relative;
-  overflow: hidden;
-}
-.cta-box::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-}
-.cta-box h2 {
-  font-size: clamp(28px, 4vw, 40px); font-weight: 700;
-  letter-spacing: -1px; margin-bottom: 16px;
-}
-.cta-box p {
-  font-size: 17px; color: var(--text-dim); max-width: 500px;
-  margin: 0 auto 36px; line-height: 1.6;
-}
-.cta-note {
-  font-size: 13px; color: var(--text-muted); margin-top: 16px;
-  font-family: 'JetBrains Mono', monospace;
-}
-
 /* FOOTER */
 footer {
   border-top: 1px solid var(--border);
-  padding: 40px 0;
-  text-align: center;
+  padding: 32px 0;
 }
-footer p { font-size: 13px; color: var(--text-muted); }
-
-/* FAQ */
-.faq-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-.faq-item { background: var(--surface); padding: 28px 32px; cursor: pointer; transition: background 0.2s; }
-.faq-item:hover { background: var(--surface2); }
-.faq-q {
-  font-size: 17px; font-weight: 600; color: var(--text);
-  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
 }
-.faq-q::after {
-  content: '+';
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--text-muted);
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text);
+}
+.footer-logo svg {
   flex-shrink: 0;
-  transition: transform 0.3s;
-  font-family: 'JetBrains Mono', monospace;
 }
-.faq-item.open .faq-q::after {
-  transform: rotate(45deg);
+.footer-logo-text {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.footer-logo-text span {
   color: var(--accent);
 }
-.faq-a {
-  font-size: 15px; color: var(--text-dim); line-height: 1.7;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
-  opacity: 0;
-  margin-top: 0;
+.footer-center {
+  font-size: 13px;
+  color: var(--text-muted);
 }
-.faq-item.open .faq-a {
-  max-height: 300px;
-  opacity: 1;
-  margin-top: 12px;
+.footer-right a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.footer-right a:hover {
+  color: var(--accent2);
 }
 
 /* SCROLL ANIMATIONS */
@@ -591,16 +789,20 @@ footer p { font-size: 13px; color: var(--text-muted); }
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav-links { display: none; }
-  .stats-row, .problem-grid { grid-template-columns: 1fr; }
-  .proof-bar { grid-template-columns: repeat(2, 1fr); }
-  .steps-grid { grid-template-columns: 1fr; }
-  .solution-card { grid-template-columns: 1fr; text-align: center; }
-  .solution-num { display: none; }
   .hero { padding: 120px 0 60px; }
-  .cta-box { padding: 40px 24px; }
+  .agent-visual { grid-template-columns: 1fr; gap: 40px; }
+  .agent-step-icon::after { display: none; }
+  .comparison-grid { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .contact-form-wrapper { padding: 32px 20px; }
+  .cta-box { padding: 40px 24px; }
+  .footer-content { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .benefits-grid { grid-template-columns: 1fr; }
 }
 
 /* ANIMATIONS */
@@ -621,27 +823,28 @@ footer p { font-size: 13px; color: var(--text-muted); }
 
 <!-- MOBILE NAV OVERLAY -->
 <div class="mobile-nav" id="mobile-nav">
-  <a href="#problem" class="mobile-nav-link">Problem</a>
   <a href="#solutions" class="mobile-nav-link">Solutions</a>
   <a href="#how" class="mobile-nav-link">How It Works</a>
-  <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
   <a href="#faq" class="mobile-nav-link">FAQ</a>
-  <a href="#contact" class="mobile-nav-link">Contact</a>
-  <a href="#book-call" class="nav-cta mobile-nav-link">Book Free Audit</a>
+  <a href="#book-call" class="nav-cta mobile-nav-link">Book a Call</a>
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="container">
-    <a href="#" class="logo"><svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 5L85.2 21.9L93.9 60L69.5 90.5L30.5 90.5L6.1 60L14.8 21.9Z" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="4"/><path d="M50 20L73.5 31.3L79.2 56.7L63 77L37 77L20.8 56.7L26.5 31.3Z" fill="#3b82f6" fill-opacity="0.3"/><path d="M50 35L61.7 40.6L64.6 53.3L56.5 63.5L43.5 63.5L35.4 53.3L38.3 40.6Z" fill="#3b82f6"/></svg><span class="logo-text">Onyx<span>AI</span></span></a>
+    <a href="#" class="logo">
+      <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 5L85.2 21.9L93.9 60L69.5 90.5L30.5 90.5L6.1 60L14.8 21.9Z" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="4"/>
+        <path d="M50 20L73.5 31.3L79.2 56.7L63 77L37 77L20.8 56.7L26.5 31.3Z" fill="#3b82f6" fill-opacity="0.3"/>
+        <path d="M50 35L61.7 40.6L64.6 53.3L56.5 63.5L43.5 63.5L35.4 53.3L38.3 40.6Z" fill="#3b82f6"/>
+      </svg>
+      <span class="logo-text">Onyx<span>AI</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#problem">Problem</a>
       <a href="#solutions">Solutions</a>
       <a href="#how">How It Works</a>
-      <a href="#testimonials">Testimonials</a>
       <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-      <a href="#book-call" class="nav-cta">Book Free Audit</a>
+      <a href="#book-call" class="nav-cta">Book a Call</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
       <span></span>
@@ -656,101 +859,170 @@ footer p { font-size: 13px; color: var(--text-muted); }
   <div class="container">
     <div class="hero-badge animate">accepting new clients · HVAC & plumbing</div>
     <h1 class="animate delay-1">Stop losing jobs to <span class="gradient">missed calls</span></h1>
-    <p class="animate delay-2">We build AI agents that answer your phones 24/7, generate instant quotes, and reactivate dead leads — so you never lose another dollar to a voicemail.</p>
+    <p class="animate delay-2">AI agents that answer your phones 24/7, generate instant quotes, and book appointments automatically — so you never lose another customer to a competitor.</p>
     <div class="hero-ctas animate delay-3">
-      <a href="#book-call" class="btn-primary">Get Your Free AI Audit</a>
-      <a href="#solutions" class="btn-ghost">See How It Works</a>
+      <a href="#how" class="btn-ghost">Learn More</a>
+      <a href="#book-call" class="btn-primary">Book a Call</a>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="container">
-  <div class="stats-row animate delay-4">
-    <div class="stat">
-      <div class="stat-value red">67%</div>
-      <div class="stat-label">of service calls go unanswered</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value amber">2.5 hrs</div>
-      <div class="stat-label">spent on manual quoting per day</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value green">$38K+</div>
-      <div class="stat-label">avg monthly revenue lost to missed calls</div>
-    </div>
-  </div>
-</div>
-
-<!-- PROBLEM -->
-<section class="section" id="problem">
+<!-- WHAT ARE AI VOICE AGENTS -->
+<section class="section">
   <div class="container">
-    <div class="section-label scroll-hidden">the problem</div>
-    <div class="section-title scroll-hidden">Your phone rings. Nobody answers.<br>That's money walking out the door.</div>
-    <div class="section-sub scroll-hidden">Most HVAC and plumbing businesses lose thousands every month to problems they don't even know they have.</div>
+    <div class="section-label scroll-hidden">what are ai voice agents?</div>
+    <div class="section-title scroll-hidden">Your 24/7 AI employee that never sleeps</div>
+    <div class="section-sub scroll-hidden">AI voice agents are intelligent assistants that handle customer interactions just like your best employee would — answering questions, booking appointments, and providing quotes instantly.</div>
 
-    <div class="problem-grid stagger-children">
-      <div class="problem-card scroll-hidden" style="--stagger-index: 0;">
-        <div class="problem-icon red">📞</div>
-        <h3>Missed Calls</h3>
-        <p>When your crew is in the field, calls go to voicemail. Those callers don't leave messages — they call your competitor.</p>
-        <span class="problem-stat red">~10 missed calls/day</span>
-      </div>
-      <div class="problem-card scroll-hidden" style="--stagger-index: 1;">
-        <div class="problem-icon amber">⏱️</div>
-        <h3>Slow Quotes</h3>
-        <p>You're spending 2+ hours a day doing free estimates by hand. That's 500+ hours a year you could spend on revenue-generating work.</p>
-        <span class="problem-stat amber">~15 min per quote</span>
-      </div>
-      <div class="problem-card scroll-hidden" style="--stagger-index: 2;">
-        <div class="problem-icon green">💀</div>
-        <h3>Dead Leads</h3>
-        <p>Hundreds of people who called you once but never booked. They're sitting in your CRM collecting dust — but they're not gone.</p>
-        <span class="problem-stat red">5-15% reactivation rate</span>
+    <div class="agent-explainer scroll-hidden">
+      <div class="agent-visual">
+        <div class="agent-step">
+          <div class="agent-step-icon">📞</div>
+          <div class="agent-step-label">Incoming Call</div>
+          <div class="agent-step-desc">Customer calls your business</div>
+        </div>
+        <div class="agent-step">
+          <div class="agent-step-icon">🤖</div>
+          <div class="agent-step-label">AI Answers</div>
+          <div class="agent-step-desc">Agent responds instantly</div>
+        </div>
+        <div class="agent-step">
+          <div class="agent-step-icon">✅</div>
+          <div class="agent-step-label">Customer Gets Help</div>
+          <div class="agent-step-desc">Problem solved in seconds</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOLUTIONS -->
-<section class="section" id="solutions">
+<!-- AI VS TRADITIONAL COMPARISON -->
+<section class="section">
   <div class="container">
-    <div class="section-label scroll-hidden">ai agents we build</div>
-    <div class="section-title scroll-hidden">Custom AI that works as hard as you do</div>
-    <div class="section-sub scroll-hidden">Each agent is trained specifically on your business — your services, your prices, your availability. Not a generic chatbot.</div>
+    <div class="comparison-section scroll-hidden">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div class="section-title">AI agents vs. traditional receptionists</div>
+        <div class="section-sub" style="margin: 0 auto;">Why settle for limited coverage when you can have unlimited capacity?</div>
+      </div>
 
-    <div class="solution-grid stagger-children">
-      <div class="solution-card scroll-hidden" style="--stagger-index: 0;">
-        <div class="solution-num">01</div>
-        <div class="solution-info">
-          <h3>AI Receptionist</h3>
-          <p>Answers every call 24/7. Captures lead info, books appointments, answers FAQs. Replaces a $60K/year employee.</p>
+      <div class="comparison-grid">
+        <div class="comparison-card ai">
+          <div class="comparison-title">
+            <span class="comparison-title-badge">🤖</span>
+            AI Voice Agents
+          </div>
+          <ul class="comparison-list">
+            <li class="comparison-item">
+              <span class="comparison-item-icon check">✓</span>
+              <span>24/7 never off duty</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon check">✓</span>
+              <span>Instant replies no hold time</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon check">✓</span>
+              <span>Low cost no salaries</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon check">✓</span>
+              <span>Handles unlimited calls</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon check">✓</span>
+              <span>100% consistent quality</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon check">✓</span>
+              <span>Books appointments automatically</span>
+            </li>
+          </ul>
         </div>
-        <span class="solution-tag blue">most popular</span>
+
+        <div class="comparison-card traditional">
+          <div class="comparison-title">
+            <span class="comparison-title-badge">👤</span>
+            Traditional Staff
+          </div>
+          <ul class="comparison-list">
+            <li class="comparison-item">
+              <span class="comparison-item-icon x">✗</span>
+              <span>Limited to business hours</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon x">✗</span>
+              <span>Customers wait on hold</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon x">✗</span>
+              <span>High cost salaries + overhead</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon x">✗</span>
+              <span>Can only take one call at a time</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon x">✗</span>
+              <span>Quality varies by employee</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-icon x">✗</span>
+              <span>Manual booking prone to errors</span>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="solution-card scroll-hidden" style="--stagger-index: 1;">
-        <div class="solution-num">02</div>
-        <div class="solution-info">
-          <h3>AI Quoting Agent</h3>
-          <p>Generates accurate price estimates in 30 seconds based on your exact pricing rules. Available around the clock.</p>
-        </div>
-        <span class="solution-tag green">high impact</span>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS GRID -->
+<section class="section">
+  <div class="container">
+    <div class="section-label scroll-hidden">perfect workflow for your business</div>
+    <div class="section-title scroll-hidden">Everything you need to win more jobs</div>
+    <div class="section-sub scroll-hidden">Our AI agents handle the busy work so you can focus on what matters — delivering great service.</div>
+
+    <div class="benefits-grid stagger-children">
+      <div class="benefit-card scroll-hidden" style="--stagger-index: 0;">
+        <span class="benefit-icon">🌙</span>
+        <h3>24/7 Availability</h3>
+        <p>Never miss a call again. Your AI agent works around the clock, even on holidays.</p>
       </div>
-      <div class="solution-card scroll-hidden" style="--stagger-index: 2;">
-        <div class="solution-num">03</div>
-        <div class="solution-info">
-          <h3>AI Reactivation Agent</h3>
-          <p>Wakes up dead leads in your CRM with personalized text, call, and email sequences. Pure recovered revenue.</p>
-        </div>
-        <span class="solution-tag amber">quick win</span>
+      <div class="benefit-card scroll-hidden" style="--stagger-index: 1;">
+        <span class="benefit-icon">⚡</span>
+        <h3>Instant Customer Assistance</h3>
+        <p>Answer questions and provide help in seconds, not minutes.</p>
       </div>
-      <div class="solution-card scroll-hidden" style="--stagger-index: 3;">
-        <div class="solution-num">04</div>
-        <div class="solution-info">
-          <h3>Google Review Agent</h3>
-          <p>Automatically requests reviews after every completed job. More 5-star reviews = more inbound calls.</p>
-        </div>
-        <span class="solution-tag blue">starter</span>
+      <div class="benefit-card scroll-hidden" style="--stagger-index: 2;">
+        <span class="benefit-icon">📅</span>
+        <h3>Seamless Appointment Booking</h3>
+        <p>Customers can book appointments instantly without waiting for a callback.</p>
+      </div>
+      <div class="benefit-card scroll-hidden" style="--stagger-index: 3;">
+        <span class="benefit-icon">🔄</span>
+        <h3>Lead Nurturing & Follow Ups</h3>
+        <p>Automated sequences to keep prospects engaged until they're ready to buy.</p>
+      </div>
+      <div class="benefit-card scroll-hidden" style="--stagger-index: 4;">
+        <span class="benefit-icon">💰</span>
+        <h3>Automated Pricing Estimates</h3>
+        <p>Generate accurate quotes in 30 seconds based on your exact pricing.</p>
+      </div>
+      <div class="benefit-card scroll-hidden" style="--stagger-index: 5;">
+        <span class="benefit-icon">🎯</span>
+        <h3>Consistent Service Quality</h3>
+        <p>Every customer gets the same professional experience, every time.</p>
+      </div>
+      <div class="benefit-card scroll-hidden" style="--stagger-index: 6;">
+        <span class="benefit-icon">📉</span>
+        <h3>Lower Costs & Higher Efficiency</h3>
+        <p>Replace expensive overhead with intelligent automation.</p>
+      </div>
+      <div class="benefit-card scroll-hidden" style="--stagger-index: 7;">
+        <span class="benefit-icon">🔗</span>
+        <h3>CRM & Phone Integration</h3>
+        <p>Works with your existing tools — no need to change systems.</p>
       </div>
     </div>
   </div>
@@ -760,54 +1032,70 @@ footer p { font-size: 13px; color: var(--text-muted); }
 <section class="section" id="how">
   <div class="container">
     <div class="section-label scroll-hidden">how it works</div>
-    <div class="section-title scroll-hidden">Live in 2 weeks. Not 2 months.</div>
-    <div class="section-sub scroll-hidden">We handle everything. You keep running your business.</div>
+    <div class="section-title scroll-hidden">Live in 2 weeks, not 2 months</div>
+    <div class="section-sub scroll-hidden">We handle everything so you can keep running your business.</div>
 
     <div class="steps-grid stagger-children">
       <div class="step-card scroll-hidden" style="--stagger-index: 0;">
         <div class="step-num">01</div>
         <div class="step-label">STEP ONE</div>
         <h3>Free AI Audit</h3>
-        <p>We analyze your call volume, quoting process, and lead pipeline. You'll see exactly how much money you're leaving on the table — with real numbers.</p>
+        <p>We analyze your call volume and show you exactly what you're losing. Real numbers, no fluff.</p>
       </div>
       <div class="step-card scroll-hidden" style="--stagger-index: 1;">
         <div class="step-num">02</div>
         <div class="step-label">STEP TWO</div>
         <h3>Custom Build</h3>
-        <p>We build your AI agent trained on your services, pricing, and team structure. Every response, every quote, every booking — tailored to your business.</p>
+        <p>AI agent trained on YOUR business, services, and pricing. Not a generic template.</p>
       </div>
       <div class="step-card scroll-hidden" style="--stagger-index: 2;">
         <div class="step-num">03</div>
         <div class="step-label">STEP THREE</div>
         <h3>Deploy & Optimize</h3>
-        <p>We plug the agent into your phone system and CRM, run a pilot week, then go live. 30 days of optimization included.</p>
+        <p>Live in 2 weeks, 30 days of optimization included. We make sure it works perfectly.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROOF -->
-<section class="section">
+<!-- SERVICES SPLIT -->
+<section class="section" id="solutions">
   <div class="container">
-    <div class="section-label scroll-hidden">by the numbers</div>
-    <div class="section-title scroll-hidden">Built for results, not demos</div>
+    <div class="section-label scroll-hidden">our solutions</div>
+    <div class="section-title scroll-hidden">Inbound & outbound AI agents</div>
+    <div class="section-sub scroll-hidden">Custom-built for HVAC and plumbing businesses. Choose one or use both.</div>
 
-    <div class="proof-bar stagger-children">
-      <div class="proof-item scroll-hidden" style="--stagger-index: 0;">
-        <div class="num">24/7</div>
-        <div class="label">call coverage</div>
+    <div class="services-grid stagger-children">
+      <div class="service-card scroll-hidden" style="--stagger-index: 0;">
+        <div class="service-content">
+          <span class="service-tag">inbound</span>
+          <h3>Inbound AI Agents</h3>
+          <p class="service-desc">Handle customer inquiries and bookings automatically</p>
+          <ul class="service-list">
+            <li>24/7 AI receptionist</li>
+            <li>Instant quote generation</li>
+            <li>Appointment scheduling</li>
+            <li>FAQ handling</li>
+            <li>Call routing to right team member</li>
+          </ul>
+          <a href="#book-call" class="service-cta">Book a Call</a>
+        </div>
       </div>
-      <div class="proof-item scroll-hidden" style="--stagger-index: 1;">
-        <div class="num">&lt;30s</div>
-        <div class="label">quote generation</div>
-      </div>
-      <div class="proof-item scroll-hidden" style="--stagger-index: 2;">
-        <div class="num">100%</div>
-        <div class="label">calls answered</div>
-      </div>
-      <div class="proof-item scroll-hidden" style="--stagger-index: 3;">
-        <div class="num">2 wk</div>
-        <div class="label">deployment time</div>
+
+      <div class="service-card scroll-hidden" style="--stagger-index: 1;">
+        <div class="service-content">
+          <span class="service-tag">outbound</span>
+          <h3>Outbound AI Agents</h3>
+          <p class="service-desc">Automate calls for engagement, follow-ups, and sales</p>
+          <ul class="service-list">
+            <li>Dead lead reactivation</li>
+            <li>Review request campaigns</li>
+            <li>Appointment reminders</li>
+            <li>Follow-up sequences</li>
+            <li>Customer satisfaction surveys</li>
+          </ul>
+          <a href="#book-call" class="service-cta">Book a Call</a>
+        </div>
       </div>
     </div>
   </div>
@@ -858,58 +1146,54 @@ footer p { font-size: 13px; color: var(--text-muted); }
   </div>
 </section>
 
-<!-- CONTACT FORM -->
-<section class="contact-form-section" id="contact">
+<!-- FAQ -->
+<section class="section" id="faq">
   <div class="container">
-    <div style="text-align: center;">
-      <div class="section-label scroll-hidden">get in touch</div>
-      <div class="section-title scroll-hidden">Have questions? Reach out.</div>
-      <div class="section-sub scroll-hidden" style="margin-left: auto; margin-right: auto;">Drop us a message and we'll get back to you within 24 hours. Or skip the form and book a call directly.</div>
-    </div>
+    <div class="section-label scroll-hidden">common questions</div>
+    <div class="section-title scroll-hidden">Everything you need to know</div>
+    <div class="section-sub scroll-hidden">Answers to the questions HVAC and plumbing owners ask most.</div>
 
-    <div class="contact-form-wrapper scroll-hidden">
-      <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="John Smith" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="john@yourcompany.com" required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
-          </div>
-          <div class="form-group">
-            <label for="company">Company Name</label>
-            <input type="text" id="company" name="company" placeholder="Your HVAC/Plumbing Co.">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell us about your business and what you're looking for..."></textarea>
-        </div>
-        <div class="form-submit">
-          <button type="submit" class="btn-primary">Send Message</button>
-        </div>
-      </form>
+    <div class="faq-grid scroll-hidden">
+      <div class="faq-item">
+        <div class="faq-q">What exactly does Onyx AI do?</div>
+        <div class="faq-a">We build custom AI voice agents that answer your phones 24/7, generate instant quotes, book appointments, and reactivate dead leads. Every agent is trained specifically on your business — your services, pricing, and availability.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do you ensure the AI doesn't mess up a conversation?</div>
+        <div class="faq-a">We train every agent on your specific business and run a 3-5 day pilot period before going live. The AI knows when to transfer complex situations to a human. Plus, we include 30 days of optimization to fine-tune performance.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need to change my phone system or CRM?</div>
+        <div class="faq-a">No. We integrate with virtually any phone system, CRM, and calendar tool. If you're using ServiceTitan, Housecall Pro, Jobber, or even just Google Calendar — we'll plug right in.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How much does this cost?</div>
+        <div class="faq-a">Every project is custom-quoted based on your specific needs. We'll walk through everything in your free audit — no surprises, no hidden fees. Most clients see ROI within the first month.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the projected ROI and how fast will I see results?</div>
+        <div class="faq-a">Most clients start seeing results within the first week of going live. The typical HVAC or plumbing business recovers 20-30% more revenue from previously missed opportunities. We'll show you exact projections in your free audit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How can AI specifically address my HVAC/plumbing business challenges?</div>
+        <div class="faq-a">Our agents are built specifically for home services. They understand emergency calls, can provide accurate pricing based on job type and location, handle seasonal demand spikes, and integrate with your existing dispatch and scheduling systems.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How scalable is the AI solution for future growth?</div>
+        <div class="faq-a">Infinitely scalable. Unlike human staff, AI agents can handle unlimited calls simultaneously. Whether you're taking 10 calls a day or 1,000, the system scales instantly without additional overhead.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="book">
+<!-- FINAL CTA -->
+<section class="cta-section">
   <div class="container">
     <div class="cta-box scroll-hidden">
-      <div class="section-label">free for a limited time</div>
-      <h2>Get your free AI audit</h2>
-      <p>15 minutes. No pitch. We'll show you exactly how many calls you're missing and what it's costing you every month.</p>
-      <a href="#book-call" class="btn-primary" style="font-size: 18px; padding: 16px 40px;">Book Your Free Audit</a>
-      <div class="cta-note">No commitment · No credit card · Just the numbers</div>
+      <div class="section-label">ready to get started?</div>
+      <h2>Let's talk.</h2>
+      <p>Book a free 15-minute call and we'll show you exactly how many calls you're missing and what it's costing you every month. No pitch, just numbers.</p>
+      <a href="#book-call" class="btn-primary" style="font-size: 18px; padding: 16px 40px;">Book a Call</a>
 
       <!-- Calendly Embed Placeholder -->
       <div id="book-call" class="calendly-placeholder">
@@ -931,46 +1215,23 @@ footer p { font-size: 13px; color: var(--text-muted); }
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-label scroll-hidden">common questions</div>
-    <div class="section-title scroll-hidden">Straight answers. No BS.</div>
-    <div class="section-sub scroll-hidden">Everything HVAC and plumbing owners ask us before getting started.</div>
-
-    <div class="faq-grid scroll-hidden">
-      <div class="faq-item">
-        <div class="faq-q">Will my customers know they're talking to AI?</div>
-        <div class="faq-a">Our voice agents sound natural and conversational — not robotic. Most callers don't realize they're speaking with AI. But we can also have the agent introduce itself as a virtual assistant if you prefer transparency.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What if the AI gets something wrong?</div>
-        <div class="faq-a">We train every agent specifically on your business — your services, your prices, your availability. There's a 3-5 day pilot period where we test and refine before going live. Plus, the agent knows when to transfer to a human for complex situations.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">How long until it's up and running?</div>
-        <div class="faq-a">Most agents are live within 1-2 weeks. Simple agents like review collectors take 3-5 days. We handle everything — you just give us access to your systems and answer a few questions about your business.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What does it cost?</div>
-        <div class="faq-a">Every project is custom-quoted based on your specific needs. We'll walk through everything in your free audit — no surprises, no hidden fees.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Can it work with my existing phone system?</div>
-        <div class="faq-a">Yes. We integrate with virtually any phone system, CRM, and calendar tool. If you're using ServiceTitan, Housecall Pro, Jobber, or even just Google Calendar — we'll plug right in.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What if I want to cancel?</div>
-        <div class="faq-a">There are no long-term contracts and no lock-in. If at any point you want to stop, just let us know with 30 days notice. Simple as that.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <p>&copy; 2026 Onyx AI. AI agents for home service businesses.</p>
+    <div class="footer-content">
+      <a href="#" class="footer-logo">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 5L85.2 21.9L93.9 60L69.5 90.5L30.5 90.5L6.1 60L14.8 21.9Z" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6" stroke-width="4"/>
+          <path d="M50 20L73.5 31.3L79.2 56.7L63 77L37 77L20.8 56.7L26.5 31.3Z" fill="#3b82f6" fill-opacity="0.3"/>
+          <path d="M50 35L61.7 40.6L64.6 53.3L56.5 63.5L43.5 63.5L35.4 53.3L38.3 40.6Z" fill="#3b82f6"/>
+        </svg>
+        <span class="footer-logo-text">Onyx<span>AI</span></span>
+      </a>
+      <div class="footer-center">Privacy Policy</div>
+      <div class="footer-right">
+        <a href="#book-call">Book a Call</a>
+      </div>
+    </div>
   </div>
 </footer>
 
